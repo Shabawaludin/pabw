@@ -1,0 +1,100 @@
+/* css/komponen.css */
+
+.form-kolom {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+label {
+    font-size: var(--text-sm);
+    font-weight: 600;
+}
+
+input,
+select,
+textarea {
+    font: inherit;
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    color: var(--color-fg);
+}
+
+button {
+    font: inherit;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    background: var(--color-primary);
+    color: var(--color-surface);
+    cursor: pointer;
+}
+
+/* Penanda fokus saat navigasi menggunakan tombol Tab */
+:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+}
+
+input:user-invalid,
+textarea:user-invalid {
+    border-color: var(--color-danger);
+    border-width: 2px;
+}
+
+.pesan-galat {
+    display: none;
+    color: var(--color-danger);
+    font-size: var(--text-sm);
+}
+
+.form-kolom:has(input:user-invalid) .pesan-galat,
+.form-kolom:has(textarea:user-invalid) .pesan-galat {
+    display: block;
+}
+
+/* 1. Tanya Jawab (details & summary) */
+details {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+    margin-bottom: var(--space-3);
+}
+
+summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+/* 2. Lini Masa (ol.lini) */
+ol.lini {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    border-left: 2px solid var(--color-primary);
+    padding-left: var(--space-4);
+    margin-left: var(--space-2);
+    list-style: none;
+}
+
+ol.lini time {
+    font-weight: bold;
+    color: var(--color-focus);
+    display: block;
+}
+
+/* 3. Keterampilan (dl.keterampilan) */
+dl.keterampilan dt {
+    font-weight: bold;
+    color: var(--color-primary);
+    margin-top: var(--space-2);
+}
+
+dl.keterampilan dd {
+    margin-left: var(--space-4);
+    margin-bottom: var(--space-3);
+}

@@ -14,9 +14,9 @@ Topik halaman saya: Halaman profil personal dan portofolio.
 
 ### Arah Visual dan Design Token
 - Arah visual: Tegas dan teknis.
-- Warna utama (--color-primary): #1D3A8C (Biru tua), diambil dari warna kesukaan agar terlihat profesional.
-- Warna teks utama (--color-fg): #0F172A
-- Warna latar (--color-bg): #F8FAFC
+- Warna utama (-color-primary): #1D3A8C (Biru tua), diambil dari warna kesukaan agar terlihat profesional.
+- Warna teks utama (-color-fg): #0F172A
+- Warna latar (-color-bg): #F8FAFC
 - Ukuran huruf isi: 1rem
 - Jarak standar antar elemen: 1rem
 
