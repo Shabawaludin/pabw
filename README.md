@@ -13,6 +13,12 @@ Topik halaman saya: Halaman profil personal dan portofolio.
 2. **Perjalanan Akademik (<ol> & <time>)**: Dibuat untuk menceritakan linimasa perjalanan studi saya di Informatika secara kronologis dan bermakna.
 3. **Peta Keterampilan (<dl>, <dt>, <dd>)**: Dibuat untuk memetakan kemampuan teknis saya dalam bentuk pasangan istilah dan penjelasan yang terstruktur rapi.
 
+## Pertemuan 5: Layout Modern (Flexbox dan Grid)
+- **Kerangka Halaman (Grid):** Mengubah tata letak utama menjadi 3 baris grid (`auto 1fr auto`) dan 2 kolom untuk area isi (`16rem 1fr` untuk sidebar dan konten utama).
+- **Galeri Adaptif:** Memanfaatkan `repeat(auto-fit, minmax(16rem, 1fr))` pada galeri proyek sehingga jumlah kolom otomatis menyesuaikan ukuran layar tanpa memerlukan *media query*.
+- **Penempatan Elemen (Span):** Menerapkan `grid-column: span 2` pada kartu sorotan utama untuk memberikan ruang tampilan yang lebih luas.
+- **Kerapian & Pencegahan Luberan:** Memastikan seluruh tata letak menggunakan `gap`, tanpa *float*, serta menerapkan `min-width: 0` untuk menghindari teks panjang meluber keluar kotak di layar sempit (uji 360px dan 1280px).
+
 ### Design Token Halaman Profil
 Berkas gaya yang dibuat: tokens.css, base.css, layout.css, komponen.css, tema.css
 
