@@ -1,13 +1,23 @@
-/* Galeri adaptif tanpa media query & tinggi rata */
-.galeri {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-    gap: var(--space-4);
-    align-content: start;
-    min-height: 14rem;
+img {
+    max-width: 100%;
+    height: auto;
 }
 
-/* - Susunan dalam kartu memakai flex */
+.table-wrap {
+    overflow-x: auto;
+}
+
+.galeri {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    align-content: start;
+}
+
+.sorotan {
+    grid-column: span 1;
+}
+
 .kartu {
     display: flex;
     flex-direction: column;
@@ -20,7 +30,6 @@
     gap: var(--space-4);
 }
 
-/* Mencegah item meluber dari kotak (handling overflow) */
 .kartu_isi {
     min-width: 0;
 }
@@ -47,7 +56,13 @@
     font-size: var(--text-sm);
 }
 
-/* Penempatan elemen lebar menggunakan span */
-.sorotan {
-    grid-column: span 2;
+/* Tanya Jawab & Struktur Tambahan */
+dl dt {
+    font-weight: bold;
+    color: var(--color-primary);
+}
+
+dl dd {
+    margin-left: 0;
+    margin-bottom: var(--space-2);
 }

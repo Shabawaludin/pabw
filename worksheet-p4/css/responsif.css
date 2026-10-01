@@ -1,0 +1,16 @@
+@media (min-width: 48rem) {
+    .galeri {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sorotan {
+        grid-column: span 2;
+    }
+}
+
+@media (min-width: 60rem) {
+    .isi {
+        grid-template-columns: 16rem 1fr;
+        grid-template-areas: "sisi utama";
+    }
+}

@@ -3,22 +3,22 @@
 
 <head>
   <meta charset="utf-8">
+  <!-- Baris viewport mutlak diperlukan untuk mobile (Lembar A.1) -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profil Sihab Awaludin</title>
 
-  <!-- Urutan pemuatan CSS -->
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/komponen.css">
   <link rel="stylesheet" href="css/tema.css">
+  <!-- CSS untuk mengatur layout layar lebar (Lembar B.1) -->
+  <link rel="stylesheet" href="css/responsif.css">
 </head>
 
 <body>
-  <!-- Pembungkus Grid 3 baris -->
   <div class="page">
 
-    <!-- Header / Navbar -->
     <header class="kepala">
       <input type="checkbox" id="tema" class="pengalih-tema">
       <label for="tema" class="tombol-tema">Tema gelap</label>
@@ -27,7 +27,6 @@
         <h1>Sihab Awaludin</h1>
         <nav aria-label="Navigasi utama">
           <ul>
-            <!-- nyari section -->
             <li><a href="#tentang">Tentang</a></li>
             <li><a href="#karya">Karya</a></li>
             <li><a href="#kontak">Kontak</a></li>
@@ -36,19 +35,17 @@
       </div>
     </header>
 
-    <!-- Isi (Grid 2 Kolom) -->
     <div class="isi">
 
-      <!-- Kolom Kiri: Sidebar -->
       <aside class="sisi">
         <figure class="foto">
-          <img src="media/foto-profil.jpg" alt="Foto Diri Sihab Awaludin" width="400" height="400" loading="lazy">
+          <!-- Atribut width 400 dan height 400 dihapus agar lentur diatur oleh CSS (Lembar D.1) -->
+          <img src="media/foto-profil.jpg" alt="Foto Diri Sihab Awaludin" loading="lazy">
         </figure>
         <p class="tagline">Mahasiswa Informatika yang sedang belajar membangun web, khususnya UI/UX dan Design Token.
         </p>
       </aside>
 
-      <!-- Kolom Kanan: Konten Utama -->
       <main class="utama">
 
         <section id="tentang">
@@ -56,33 +53,36 @@
           <p>Saya mahasiswa Program Studi Informatika Universitas Islam Indonesia. Saya tertarik pada pengembangan web,
             khususnya bagian tampilan, karena di sana keputusan teknis langsung terlihat hasilnya.</p>
 
-          <table class="tabel-data">
-            <caption>Kegiatan yang saya ikuti semester ini</caption>
-            <thead>
-              <tr>
-                <th scope="col">Kegiatan</th>
-                <th scope="col">Peran</th>
-                <th scope="col">Waktu</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Praktikum PABW</td>
-                <td>Mahasiswa</td>
-                <td>September 2026</td>
-              </tr>
-              <tr>
-                <td>PORSEMATIK feat. Milad Informatika</td>
-                <td>Panitia</td>
-                <td>November 2026</td>
-              </tr>
-              <tr>
-                <td>Himpunan Mahasiswa Informatika</td>
-                <td>Anggota</td>
-                <td>2026/2027</td>
-              </tr>
-            </tbody>
-          </table>
+          <!-- Tabel dibungkus wadah agar bisa bergulir sendiri di layar sempit (Lembar D.1) -->
+          <div class="table-wrap">
+            <table class="tabel-data">
+              <caption>Kegiatan yang saya ikuti semester ini</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Kegiatan</th>
+                  <th scope="col">Peran</th>
+                  <th scope="col">Waktu</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Praktikum PABW</td>
+                  <td>Peserta</td>
+                  <td>September 2026</td>
+                </tr>
+                <tr>
+                  <td>Kelas Terbuka Kampus</td>
+                  <td>Peserta</td>
+                  <td>Oktober 2026</td>
+                </tr>
+                <tr>
+                  <td>Organisasi kemahasiswaan</td>
+                  <td>Anggota</td>
+                  <td>2026</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </section>
 
         <section id="karya">
@@ -101,11 +101,11 @@
 
             <article class="kartu">
               <div class="kartu_isi">
-                <h3 class="kartu__judul">Desain Prototype Aplikasi Ternak</h3>
-                <p>Eksplorasi desain prototype aplikasi yang menghubungakan para peternak dengan teknologi digital.</p>
+                <h3 class="kartu__judul">Halaman Kelas Terbuka Kampus</h3>
+                <p>Praktikum P03, HTML semantik dan form dengan lolos audit W3C.</p>
               </div>
               <div class="kartu_kaki">
-                <time datetime="2026-08">November 2025</time>
+                <time datetime="2026-08">Ags 2026</time>
                 <a href="#karya">Buka Halaman</a>
               </div>
             </article>
@@ -116,7 +116,7 @@
                 <p>Eksplorasi UI/UX.</p>
               </div>
               <div class="kartu_kaki">
-                <time datetime="2026-07"> Agustus 2026</time>
+                <time datetime="2026-07">Jul 2026</time>
                 <a href="#karya">Lihat Desain</a>
               </div>
             </article>
@@ -137,11 +137,10 @@
           <h2>Tanya Jawab</h2>
           <details>
             <summary>Fokus utama semester ini?</summary>
-            <p>Menguasai pondasi tata letak modern seperti Grid dan Flexbox.</p>
+            <p>Menguasai pondasi tata letak modern seperti Grid dan Flexbox secara Mobile-First.</p>
           </details>
         </section>
 
-        <!-- Bagian Kontak (Formulir) -->
         <section id="kontak">
           <h2>Hubungi saya</h2>
           <p>Isi formulir berikut. Semua kolom bertanda wajib harus diisi.</p>
@@ -173,7 +172,6 @@
       </main>
     </div>
 
-    <!-- BARIS 3: Footer -->
     <footer class="kaki">
       <p>Sihab Awaludin - 25523015 - <time datetime="2026">2026</time></p>
     </footer>
