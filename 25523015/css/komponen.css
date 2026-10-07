@@ -66,3 +66,38 @@ dl dd {
     margin-left: 0;
     margin-bottom: var(--space-2);
 }
+
+/* Penanda tombol filter aktif */
+#filter button {
+    padding: var(--space-1) var(--space-3);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+}
+
+.aktif {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    background: var(--color-primary) !important;
+    color: var(--color-bg) !important;
+}
+
+/* Menata pesan galat form agar rapi turun ke bawah */
+.pesan-galat {
+    display: block;
+    color: #dc2626;
+    font-size: var(--text-sm);
+    margin-top: var(--space-1);
+}
+
+/* Memastikan elemen peringatan benar-benar hilang saat statusnya hidden */
+.pesan-galat[hidden] {
+    display: none !important;
+}
+
+/* Memberi batas merah pada kotak isian yang salah */
+input[aria-invalid="true"] {
+    border-color: #dc2626;
+    outline-color: #dc2626;
+}

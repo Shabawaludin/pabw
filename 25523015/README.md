@@ -44,6 +44,12 @@ Kriteria selesai saya: mengubah `--color-primary` di satu baris harus mengubah w
 - **Array Methods:** Memanfaatkan metode `map`, `filter`, `find`, serta `sort` dengan *spread operator* (`[...array]`) agar integritas data asli tetap terjaga tanpa termutasi[cite: 8, 10].
 - **Eksekusi Lokal & Penanganan Galat:** Menjalankan halaman menggunakan server lokal Python / Live Server (`http://localhost:8000`) serta menerapkan penanganan akses aman (*optional chaining* `?.`)[cite: 8, 10].
 
+## Pertemuan 9: DOM, Event, dan Interaktivitas
+- **Render Dinamis (`dom.js`):** Membaca data dari `app.js` menggunakan modul ES (`export`/`import`) dan menyusun elemen kartu proyek secara aman menggunakan `createElement` dan `textContent`[cite: 7].
+- **Event Delegation:** Menerapkan satu pendengar (*event listener*) pada elemen induk (`#filter`) untuk melayani seluruh tombol penyaringan kategori secara efisien[cite: 7].
+- **Manajemen Keadaan (State & Render):** Memastikan wadah dikosongkan (`wadah.textContent = ""`) sebelum render ulang serta menangani keadaan kosong ketika filter tidak menghasilkan data[cite: 7].
+- **Validasi Form Interaktif:** Menerapkan pencegahan muat ulang halaman (`event.preventDefault()`), validasi kolom secara *real-time*, penahanan tombol kirim (`disabled`), serta penanganan galat per kolom tanpa menghapus masukan pengguna[cite: 7].
+
 ## Catatan penggunaan AI
 - **Bagian yang dibantu AI:** Membantu menyusun kerangka penulisan JavaScript ES6 (pembuatan fungsi murni, penerapan array methods `map`/`filter`/`find`), memahami alur penanganan galat (*error handling*), serta memastikan penerapan konsep *Mobile-First* pada CSS responsif sesuai modul praktikum[cite: 1, 8, 10].
 - **Bagian yang dikerjakan sendiri:** Menyusun dan mengetik seluruh data profil personal, menyesuaikan teks konten, menguji halaman di peramban menggunakan server lokal, serta melakukan *commit* dan *push* ke repositori GitHub secara mandiri[cite: 1, 8, 10].

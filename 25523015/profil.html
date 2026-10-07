@@ -38,7 +38,7 @@
       <aside class="sisi">
         <figure class="foto">
           <!-- Atribut width 400 dan height 400 dihapus agar lentur diatur oleh CSS -->
-          <img src="media/foto-profil.jpg" alt="Foto Diri Sihab Awaludin" loading="lazy">
+          <img src="media/foto-profil.JPG" alt="Foto Diri Sihab Awaludin" loading="lazy">
         </figure>
         <p class="tagline">Mahasiswa Informatika yang sedang belajar membangun web, khususnya UI/UX dan Design Token.
         </p>
@@ -85,40 +85,20 @@
 
         <section id="karya">
           <h2>Karya saya</h2>
-          <div class="galeri">
-            <article class="kartu sorotan">
-              <div class="kartu_isi">
-                <h3 class="kartu__judul">Halaman Profil Pribadi</h3>
-                <p>Membangun Halaman Profil Pribadi - PABW 2026 dengan CSS modern.</p>
-              </div>
-              <div class="kartu_kaki">
-                <time datetime="2026-09">Sep 2026</time>
-                <a href="#karya">Lihat Halaman</a>
-              </div>
-            </article>
 
-            <article class="kartu">
-              <div class="kartu_isi">
-                <h3 class="kartu__judul">Halaman Kelas Terbuka Kampus</h3>
-                <p>Praktikum P03, HTML semantik dan form dengan lolos audit W3C.</p>
-              </div>
-              <div class="kartu_kaki">
-                <time datetime="2026-08">Ags 2026</time>
-                <a href="#karya">Buka Halaman</a>
-              </div>
-            </article>
-
-            <article class="kartu">
-              <div class="kartu_isi">
-                <h3 class="kartu__judul">Desain Antarmuka Aplikasi Kasir</h3>
-                <p>Eksplorasi UI/UX.</p>
-              </div>
-              <div class="kartu_kaki">
-                <time datetime="2026-07">Jul 2026</time>
-                <a href="#karya">Lihat Desain</a>
-              </div>
-            </article>
+          <!-- Induk filter dan tombol dengan data-kategori -->
+          <div id="filter" style="margin-bottom: var(--space-4); display: flex; gap: var(--space-2);">
+            <button data-kategori="semua" class="aktif">Semua</button>
+            <button data-kategori="web">Web</button>
+            <button data-kategori="ui">UI/UX</button>
           </div>
+
+          <!-- Wadah kosong tempat kartu proyek dipasang oleh JS. 
+               Kelas 'galeri' tetap dipertahankan agar tata letak CSS Grid tidak rusak -->
+          <ul id="daftar" class="galeri" style="list-style: none; padding: 0;"></ul>
+
+          <!-- Pesan yang muncul bila filter kosong -->
+          <p id="pesan-kosong" hidden>Tidak ada proyek pada kategori itu.</p>
         </section>
 
         <section id="keterampilan">
@@ -142,27 +122,31 @@
         <section id="kontak">
           <h2>Hubungi saya</h2>
           <p>Isi formulir berikut. Semua kolom bertanda wajib harus diisi.</p>
-          <form action="#" method="get" class="form-kontak">
+
+          <!-- Tambahkan id form dan atribut novalidate -->
+          <form id="form-kontak" action="#" method="get" class="form-kontak" novalidate>
             <fieldset>
               <legend>Data pengirim</legend>
               <div class="form-kolom">
                 <label for="nama">Nama lengkap</label>
                 <input type="text" id="nama" name="nama" required>
-                <span class="pesan-galat">Nama tidak boleh kosong.</span>
+                <!-- Tambahkan atribut hidden -->
+                <span class="pesan-galat" hidden>Nama tidak boleh kosong.</span>
               </div>
               <div class="form-kolom">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" required>
-                <span class="pesan-galat">Masukkan alamat email yang valid.</span>
+                <span class="pesan-galat" hidden>Masukkan alamat email yang valid.</span>
               </div>
               <div class="form-kolom">
                 <label for="nim">NIM</label>
                 <input type="text" id="nim" name="nim" pattern="[0-9]{8}">
-                <span class="pesan-galat">Delapan digit angka, contoh 105230102.</span>
+                <span class="pesan-galat" hidden>Delapan digit angka, contoh 105230102.</span>
               </div>
             </fieldset>
             <div class="form-kolom">
-              <button type="submit">Kirim pesan</button>
+              <!-- Tambahkan atribut disabled -->
+              <button type="submit" disabled>Kirim pesan</button>
             </div>
           </form>
         </section>
@@ -176,8 +160,10 @@
 
   </div>
 
-  <!-- Menyambungkan skrip ke halaman -->
+  <!-- Menyambungkan skrip ke halaman secara berurutan -->
   <script type="module" src="js/app.js"></script>
+  <!-- Menyambungkan dom.js -->
+  <script type="module" src="js/dom.js"></script>
 </body>
 
 </html>

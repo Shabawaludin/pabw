@@ -1,5 +1,6 @@
 // Menggunakan 'const' karena data profil tidak akan ditunjuk ulang
-const profil = {
+// Tambahan 'export' agar bisa dibaca oleh file dom.js
+export const profil = {
     nama: "Sihab Awaludin",
     peran: "Mahasiswa Informatika yang fokus pada UI/UX & Front-End",
     keahlian: ["HTML Semantik", "CSS Modern (Grid/Flexbox)", "Design Token", "JavaScript ES6+"],
@@ -7,10 +8,11 @@ const profil = {
 };
 
 // Array of object untuk daftar proyek 
-const daftarProyek = [
-    { judul: "Halaman Profil Pribadi", tahun: 2026, selesai: true },
-    { judul: "Halaman Kelas Terbuka Kampus", tahun: 2026, selesai: true },
-    { judul: "Desain Antarmuka Aplikasi Kasir", tahun: 2026, selesai: false }
+// Tambahan 'export' dan lengkapi properti 'kategori' & 'deskripsi' 
+export const daftarProyek = [
+    { judul: "Halaman Profil Pribadi", tahun: 2026, selesai: true, kategori: "web", deskripsi: "Membangun Halaman Profil Pribadi - PABW 2026 dengan CSS modern." },
+    { judul: "Halaman Kelas Terbuka Kampus", tahun: 2026, selesai: true, kategori: "web", deskripsi: "Praktikum P03, HTML semantik dan form dengan lolos audit W3C." },
+    { judul: "Desain Antarmuka Aplikasi Kasir", tahun: 2026, selesai: false, kategori: "ui", deskripsi: "Eksplorasi UI/UX." }
 ];
 
 const buatPerkenalan = ({ nama, peran }) => {
