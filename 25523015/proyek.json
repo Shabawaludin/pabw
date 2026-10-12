@@ -1,0 +1,23 @@
+[
+    {
+        "judul": "Halaman Profil Pribadi",
+        "tahun": "Sep 2026",
+        "selesai": true,
+        "kategori": "web",
+        "deskripsi": "Membangun Halaman Profil Pribadi - PABW 2026 dengan CSS modern."
+    },
+    {
+        "judul": "Halaman Kelas Terbuka Kampus",
+        "tahun": "Ags 2026",
+        "selesai": true,
+        "kategori": "web",
+        "deskripsi": "Praktikum P03, HTML semantik dan form dengan lolos audit W3C."
+    },
+    {
+        "judul": "Desain Antarmuka Aplikasi Kasir",
+        "tahun": "Jul 2026",
+        "selesai": false,
+        "kategori": "ui",
+        "deskripsi": "Eksplorasi UI/UX."
+    }
+]
