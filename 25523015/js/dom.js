@@ -1,17 +1,18 @@
-// Memisahkan lapisan data. dom.js hanya memanggil api.js, BUKAN app.js
-import { ambilProyek } from "./api.js";
+// js/dom.js
+import { formatTanggal } from './data.js';
 
-// Pemilihan Elemen (Tetap sama)
-const wadah = document.querySelector("#daftar");
-const pesanKosong = document.querySelector("#pesan-kosong");
-const barisFilter = document.querySelector("#filter");
-const formKontak = document.querySelector("#form-kontak");
-const tombolKirim = formKontak.querySelector("button[type='submit']");
+// Pemilihan Elemen (Satu-satunya berkas yang boleh menyentuh halaman)
+export const wadah = document.querySelector("#daftar");
+export const pesanKosong = document.querySelector("#pesan-kosong") || document.createElement("p");
+export const barisFilter = document.querySelector("#filter");
+export const formKontak = document.querySelector("#form-kontak");
+export const tombolReset = document.querySelector("#tombol-reset");
 
-// Variabel global untuk menyimpan data hasil fetch agar bisa difilter
-let dataProyekGlobal = [];
+if (!document.querySelector("#pesan-kosong")) {
+    pesanKosong.id = "pesan-kosong";
+    wadah.parentElement.appendChild(pesanKosong);
+}
 
-// Fungsi menyusun elemen anak (Tetap sama)
 function buatKartu(proyek) {
     const li = document.createElement("li");
     li.className = "kartu";
@@ -32,7 +33,7 @@ function buatKartu(proyek) {
     divKaki.className = "kartu_kaki";
 
     const time = document.createElement("time");
-    time.textContent = proyek.tahun;
+    time.textContent = formatTanggal(proyek.tahun);
 
     const a = document.createElement("a");
     a.href = "#karya";
@@ -44,99 +45,42 @@ function buatKartu(proyek) {
     return li;
 }
 
-// Fungsi render untuk menampilkan hasil filter
-function render(daftar) {
+// Lembar C.2: Fungsi saring berdasarkan state
+export function saring(state) {
+    return state.daftarProyek.filter(
+        (proyek) => state.kategoriAktif === "semua" || proyek.kategori === state.kategoriAktif
+    );
+}
+
+// Render tampilan berpatokan penuh pada objek state
+export function render(state) {
     wadah.textContent = "";
 
-    if (daftar.length === 0) {
+    // Tandai elemen filter yang sedang aktif (mendukung button dan tag a)
+    if (barisFilter) {
+        barisFilter.querySelectorAll("button:not(#tombol-reset), a").forEach((el) => {
+            const kat = (el.dataset.kategori || el.textContent || "").trim().toLowerCase();
+            const aktif = kat.includes(state.kategoriAktif);
+            el.classList.toggle("aktif", aktif);
+        });
+    }
+
+    const tampil = saring(state);
+
+    if (tampil.length === 0) {
+        pesanKosong.textContent = "Belum ada proyek yang ditambahkan atau tidak ada di kategori ini.";
         pesanKosong.hidden = false;
         return;
     }
 
     pesanKosong.hidden = true;
-    daftar.forEach((proyek) => wadah.append(buatKartu(proyek)));
+    tampil.forEach((proyek) => wadah.append(buatKartu(proyek)));
 }
-
-// Async/Await untuk menampilkan 4 keadaan antarmuka
-async function tampilkanProyek() {
-    wadah.textContent = "Memuat data proyek..."; // 1. KEADAAN MEMUAT
+export function tampilkanMemuat() {
+    wadah.textContent = "Memuat data proyek...";
     pesanKosong.hidden = true;
-
-    try {
-        const daftar = await ambilProyek();
-        dataProyekGlobal = daftar; // Simpan untuk filter
-
-        if (daftar.length === 0) {
-            wadah.textContent = "Belum ada proyek yang ditambahkan."; // 2. KEADAAN KOSONG
-            return;
-        }
-
-        render(daftar); // 3. KEADAAN BERHASIL
-    } catch (galat) {
-        wadah.textContent = "Gagal memuat data: " + galat.message; // 4. KEADAAN GAGAL
-    }
 }
 
-// Event Delegation untuk filter (Tetap sama, tapi pakai dataProyekGlobal)
-function tandaiTombolAktif(tombolAktif) {
-    document.querySelectorAll("#filter button").forEach((tombol) => {
-        tombol.classList.toggle("aktif", tombol === tombolAktif);
-    });
+export function tampilkanGalat(pesan) {
+    wadah.textContent = "Gagal memuat data: " + pesan;
 }
-
-barisFilter.addEventListener("click", (event) => {
-    const tombol = event.target.closest("button");
-    if (!tombol) return;
-
-    tandaiTombolAktif(tombol);
-
-    const kategori = tombol.dataset.kategori;
-    const terpilih = dataProyekGlobal.filter(
-        (proyek) => kategori === "semua" || proyek.kategori === kategori
-    );
-
-    render(terpilih);
-});
-
-// Validasi Form Real-time (Tetap sama seperti P9)
-function validasiForm() {
-    let formSah = true;
-    const nama = formKontak.querySelector("#nama");
-    const email = formKontak.querySelector("#email");
-
-    if (nama.value.trim() === "") {
-        nama.setAttribute("aria-invalid", "true");
-        nama.nextElementSibling.hidden = false;
-        formSah = false;
-    } else {
-        nama.removeAttribute("aria-invalid");
-        nama.nextElementSibling.hidden = true;
-    }
-
-    if (email.value.trim() === "" || !email.value.includes("@")) {
-        email.setAttribute("aria-invalid", "true");
-        email.nextElementSibling.hidden = false;
-        formSah = false;
-    } else {
-        email.removeAttribute("aria-invalid");
-        email.nextElementSibling.hidden = true;
-    }
-
-    tombolKirim.disabled = !formSah;
-    return formSah;
-}
-
-formKontak.addEventListener("input", validasiForm);
-formKontak.addEventListener("submit", (event) => {
-    event.preventDefault();
-    if (validasiForm()) {
-        alert("Berhasil! Pesan Anda telah terkirim.");
-        formKontak.reset();
-        formKontak.querySelectorAll("input").forEach((i) => i.removeAttribute("aria-invalid"));
-        formKontak.querySelectorAll(".pesan-galat").forEach((p) => p.hidden = true);
-        tombolKirim.disabled = true;
-    }
-});
-
-// Jalankan fetch saat halaman dimuat
-tampilkanProyek();

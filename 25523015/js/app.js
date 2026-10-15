@@ -1,55 +1,36 @@
-// Menggunakan 'const' karena data profil tidak akan ditunjuk ulang
-// Tambahan 'export' agar bisa dibaca oleh file dom.js
-export const profil = {
-    nama: "Sihab Awaludin",
-    peran: "Mahasiswa Informatika yang fokus pada UI/UX & Front-End",
-    keahlian: ["HTML Semantik", "CSS Modern (Grid/Flexbox)", "Design Token", "JavaScript ES6+"],
-    jumlahProyek: 3
-};
+// js/app.js
+import { ambilProyek } from './api.js';
+import { state, muat } from './state.js';
+import { render, tampilkanMemuat, tampilkanGalat } from './dom.js';
+import { pasangPendengar } from './events.js';
 
-// Array of object untuk daftar proyek 
-// Tambahan 'export' dan lengkapi properti 'kategori' & 'deskripsi' 
-export const daftarProyek = [
-    { judul: "Halaman Profil Pribadi", tahun: 2026, selesai: true, kategori: "web", deskripsi: "Membangun Halaman Profil Pribadi - PABW 2026 dengan CSS modern." },
-    { judul: "Halaman Kelas Terbuka Kampus", tahun: 2026, selesai: true, kategori: "web", deskripsi: "Praktikum P03, HTML semantik dan form dengan lolos audit W3C." },
-    { judul: "Desain Antarmuka Aplikasi Kasir", tahun: 2026, selesai: false, kategori: "ui", deskripsi: "Eksplorasi UI/UX." }
-];
+async function jalankanAplikasi() {
+    // 1. Pasang pendengar klik dan form
+    pasangPendengar();
 
-const buatPerkenalan = ({ nama, peran }) => {
-    return `Halo, nama saya ${nama}. Saya adalah seorang ${peran}.`;
-};
+    // 2. Beri indikator sedang memuat
+    tampilkanMemuat();
 
-// 2. Fungsi merapikan daftar keahlian menjadi satu baris teks
-const formatKeahlian = (daftar) => {
-    return daftar.join(" · ");
-};
+    try {
+        // 3. Ambil data mentah dari jaringan, masukkan ke state
+        const dataApi = await ambilProyek();
+        state.daftarProyek = dataApi;
 
-console.log("--- Menampilkan Seluruh Data (console.table) ---");
-console.table(profil.keahlian);
-console.table(daftarProyek);
+        // 4. Periksa apakah browser masih ingat pilihan sebelumnya
+        const memori = muat();
+        if (memori) {
+            state.kategoriAktif = memori.kategoriAktif;
+        } else {
+            state.kategoriAktif = "semua"; // Nilai bawaan jika kosong/rusak
+        }
 
-// FILTER: Menyaring proyek yang sudah selesai
-const proyekSelesai = daftarProyek.filter((proyek) => proyek.selesai === true);
-console.log("--- Hasil Filter (Proyek Selesai) ---");
-console.table(proyekSelesai);
+        // 5. Gambar ulang halaman dengan state yang final
+        render(state);
 
-// FIND: Mengambil satu isi (objek) yang cocok
-const cariKasir = daftarProyek.find((proyek) => proyek.judul === "Desain Antarmuka Aplikasi Kasir");
-console.log("--- Hasil Find (Proyek Kasir) ---", cariKasir);
+    } catch (galat) {
+        tampilkanGalat(galat.message);
+    }
+}
 
-// MAP: Menghasilkan array baru (hanya berisi judul proyek)
-const judulProyekSaja = daftarProyek.map((proyek) => proyek.judul);
-console.log("--- Hasil Map (Daftar Judul Saja) ---", judulProyekSaja);
-
-// Mencegah array asli berubah saat memakai sort dengan Spread Operator
-const urutTahun = [...daftarProyek].sort((a, b) => b.tahun - a.tahun);
-
-// Menggunakan Optional Chaining (?.) untuk mencegah galat jika elemen tidak ditemukan
-const elemenNama = document.querySelector('.header-baris h1');
-if (elemenNama) elemenNama.textContent = profil.nama;
-
-const elemenTagline = document.querySelector('.tagline');
-if (elemenTagline) elemenTagline.textContent = buatPerkenalan(profil);
-
-const elemenKeterampilan = document.querySelector('dl.keterampilan dd:first-of-type');
-if (elemenKeterampilan) elemenKeterampilan.textContent = formatKeahlian(profil.keahlian);
+// Menjalankan rakitan modul
+jalankanAplikasi();

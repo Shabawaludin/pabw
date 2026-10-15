@@ -50,6 +50,14 @@ Kriteria selesai saya: mengubah `--color-primary` di satu baris harus mengubah w
 - **Manajemen Keadaan (State & Render):** Memastikan wadah dikosongkan (`wadah.textContent = ""`) sebelum render ulang serta menangani keadaan kosong ketika filter tidak menghasilkan data[cite: 7].
 - **Validasi Form Interaktif:** Menerapkan pencegahan muat ulang halaman (`event.preventDefault()`), validasi kolom secara *real-time*, penahanan tombol kirim (`disabled`), serta penanganan galat per kolom tanpa menghapus masukan pengguna[cite: 7].
 
-## Catatan penggunaan AI
-- **Bagian yang dibantu AI:** Membantu menyusun kerangka penulisan JavaScript ES6 (pembuatan fungsi murni, penerapan array methods `map`/`filter`/`find`), memahami alur penanganan galat (*error handling*), serta memastikan penerapan konsep *Mobile-First* pada CSS responsif sesuai modul praktikum[cite: 1, 8, 10].
-- **Bagian yang dikerjakan sendiri:** Menyusun dan mengetik seluruh data profil personal, menyesuaikan teks konten, menguji halaman di peramban menggunakan server lokal, serta melakukan *commit* dan *push* ke repositori GitHub secara mandiri[cite: 1, 8, 10].
+## Pertemuan 10 - Asinkronus dan Fetch API
+* **Topik**: Pemrograman asinkronus, `async/await`, `fetch`, dan modularisasi lapisan data masuk (`js/api.js`).
+* **Ringkasan**: Memuat data proyek secara dinamis dari `proyek.json` menggunakan fungsi asinkronus dan menangani galat jaringan.
+
+## Pertemuan 11 - Modul, State, dan Penyimpanan Klien
+* **Nomor Versi Node.js**: v24.14.0
+* **Nomor Versi npm**: 11.9.0
+
+### Deklarasi AI
+* **Bagian yang dibantu AI**: Membantu perancangan struktur 5 modul (`data.js`, `state.js`, `dom.js`, `events.js`, `app.js`), implementasi objek `state` tunggal, penyimpanan `localStorage` dengan penanganan simpanan rusak (`try/catch` dan nomor versi), serta mekanisme *event delegation* untuk filter kategori.
+* **Bagian yang dikerjakan sendiri**: Penyesuaian skrip dengan elemen HTML pribadi, pengujian fungsionalitas di peramban, penataan antarmuka, serta pengujian manual (*testing*).
