@@ -58,6 +58,13 @@ Kriteria selesai saya: mengubah `--color-primary` di satu baris harus mengubah w
 * **Nomor Versi Node.js**: v24.14.0
 * **Nomor Versi npm**: 11.9.0
 
+## Pertemuan 12 - Build Tooling, npm, dan Framework SPA
+* **Nomor Versi Node.js**: v24.14.0
+* **Nomor Versi npm**: 11.9.0
+* **Ukuran Sebelum vs Sesudah Build**: 
+  * Sebelum build: ~300 kB
+  * Sesudah build (dist/): ~75.4 kB
+  
 ### Deklarasi AI
 * **Bagian yang dibantu AI**: Membantu perancangan struktur 5 modul (`data.js`, `state.js`, `dom.js`, `events.js`, `app.js`), implementasi objek `state` tunggal, penyimpanan `localStorage` dengan penanganan simpanan rusak (`try/catch` dan nomor versi), serta mekanisme *event delegation* untuk filter kategori.
 * **Bagian yang dikerjakan sendiri**: Penyesuaian skrip dengan elemen HTML pribadi, pengujian fungsionalitas di peramban, penataan antarmuka, serta pengujian manual (*testing*).
